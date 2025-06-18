@@ -105,21 +105,18 @@ namespace Protocolo
             switch (pedido.Comando)
             {
                 case "INGRESO":
-                    // Validar credenciales
                     if (pedido.Parametros.Length == 2 &&
                         pedido.Parametros[0] == "root" &&
                         pedido.Parametros[1] == "admin20")
                     {
-                        // Aleatoriamente conceder o negar acceso
-                        respuesta = new Random().Next(2) == 0
-                            ? new Respuesta { Estado = "OK", Mensaje = "ACCESO_CONCEDIDO" }
-                            : new Respuesta { Estado = "NOK", Mensaje = "ACCESO_NEGADO" };
+                        respuesta = new Respuesta { Estado = "OK", Mensaje = "ACCESO_CONCEDIDO" };
                     }
                     else
                     {
-                        respuesta.Mensaje = "ACCESO_NEGADO";
+                        respuesta = new Respuesta { Estado = "NOK", Mensaje = "ACCESO_NEGADO" };
                     }
                     break;
+
 
                 case "CALCULO":
                     // Validar placa y calcular el día correspondiente
